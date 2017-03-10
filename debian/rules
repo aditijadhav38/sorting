@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+INSTDIR_BASE=$(shell pwd)/debian/ascend
+PREFIX=/opt/ascend/
+INSTDIR=$(INSTDIR_BASE)$(PREFIX)
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ 
+override_dh_install:
+	make sorting
+	mkdir -p $(INSTDIR)
+	cp sorting $(INSTDIR)
+	/bin/chmod +x $(INSTDIR)sorting
